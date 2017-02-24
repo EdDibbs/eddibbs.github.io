@@ -47,7 +47,7 @@ This shouldn't be much of an issue, but will need to be accounted for during the
 Because the replays are often from one user's perspective, they sometimes contain the TAB menu or the after-game scoreboard. If we can detect these screens, we should be able to receive the names of everyone in the match on both teams, regardless of who dies or actually appears in the clip. This screen doesn't appear in all clips though, so it shouldn't be relied on.
 
 ## Conclusion
-I plan on using the next few days to research the individual parts of this project and to make sure I haven't missed anything that might block progress. Overall, however, I believe that this should be doable in my spare time. ^^^Hopefully.
+I plan on using the next few days to research the individual parts of this project and to make sure I haven't missed anything that might block progress. Overall, however, I believe that this should be doable in my spare time.
 
 
 [reddit-overwatch]: https://www.reddit.com/r/Overwatch
