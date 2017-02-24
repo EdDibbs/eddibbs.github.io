@@ -4,11 +4,73 @@
     <title>Edward Dibbs</title>
     <description>An online portfolio for Ed Dibbs, Software Developer.
 </description>
-    <link>http://eddibbs.com/</link>
-    <atom:link href="http://eddibbs.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 11 Feb 2017 11:51:12 -0800</pubDate>
-    <lastBuildDate>Sat, 11 Feb 2017 11:51:12 -0800</lastBuildDate>
-    <generator>Jekyll v3.0.1</generator>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 23 Feb 2017 19:52:21 -0800</pubDate>
+    <lastBuildDate>Thu, 23 Feb 2017 19:52:21 -0800</lastBuildDate>
+    <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>Overwatch Replay Scanner - Part One</title>
+        <description>&lt;p&gt;I don’t often get ideas for personal projects that interest me, but the other day I had just that. I’ve been playing a decent amount of Overwatch lately and I often browse the &lt;a href=&quot;https://www.reddit.com/r/Overwatch&quot;&gt;/r/Overwatch&lt;/a&gt; subreddit. While watching various highlights and Plays of the Game (Play of the Games?) a thought struck me: “With all these clips being uploaded about Overwatch, surely I must have appeared in a few of them as a teammate or opponent.” I figured that there would be no way to tell if you appeared in someone else’s highlight without making a mental note to check the killfeed or nameplates of every highlight you come across.&lt;/p&gt;
+
+&lt;p&gt;But that got me thinking… most of the Overwatch plays I’ve seen have been posted to /r/Overwatch, but most of them were hosted on &lt;a href=&quot;https://www.gfycat.com/&quot;&gt;Gfycat&lt;/a&gt;. Furthermore, the plays all seemed to share the same tag of &lt;a href=&quot;https://gfycat.com/tag/Overwatch&quot;&gt;#Overwatch&lt;/a&gt;, including plays that I had uploaded but not explicitly tagged. A plan started to come together: I could scan Gfycat for all clips that include the tag  #Overwatch, use some computer vision to parse out all player names, and then index these plays on some website that could be open to the Overwatch community.&lt;/p&gt;
+
+&lt;h2 id=&quot;ok-but-how-do-you-get-the-player-names&quot;&gt;Ok, but how do you get the player names?&lt;/h2&gt;
+&lt;p&gt;About three months ago, /u/ewaller, a user on /r/Overwatch, &lt;a href=&quot;https://redd.it/5dn7pi&quot;&gt;posted&lt;/a&gt; a link to a &lt;a href=&quot;https://streamhive.com/filters/overwatch-streams&quot;&gt;website&lt;/a&gt; he created that scans &lt;a href=&quot;https://twitch.tv/&quot;&gt;Twitch.tv&lt;/a&gt; gameplay streams and uses computer vision to determine:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;What hero the user is playing&lt;/li&gt;
+  &lt;li&gt;What competitive ranking the user is playing at&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The website allows the user to filter gameplay streams by these two conditions so that they can find new streamers to watch. This service helps streamers get more views and for viewers to find less popular streamers playing at specific rankings.&lt;/p&gt;
+
+&lt;p&gt;/u/ewaller was able to do this by periodically scanning twitch streams for the section of the Overwatch UI that shows the current character and the competitive ranking symbols of the player. I figured the same process could be used to find at least some of the players in a GIF by scanning certain portions of the UI for their names.&lt;/p&gt;
+
+&lt;h2 id=&quot;so-whats-the-plan&quot;&gt;So what’s the plan?&lt;/h2&gt;
+&lt;p&gt;Basically the whole project can be divided into the following steps:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Frequently poll Gfycat for new clips with the #Overwatch tag.&lt;/li&gt;
+  &lt;li&gt;Scan the webm file for useful frames (those containing player names).&lt;/li&gt;
+  &lt;li&gt;Preprocess the frames with &lt;a href=&quot;http://opencv.org&quot;&gt;OpenCV&lt;/a&gt;, cropping the names and adding contrast.&lt;/li&gt;
+  &lt;li&gt;Process the names using &lt;a href=&quot;https://github.com/tesseract-ocr&quot;&gt;Tesseract&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Update a database with the new information.&lt;/li&gt;
+  &lt;li&gt;Website polls database to display results.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Some of these steps are easier than others, but overall the project should prove to be a challenge.&lt;/p&gt;
+
+&lt;h2 id=&quot;is-that-everything&quot;&gt;Is that everything?&lt;/h2&gt;
+&lt;p&gt;Well not exactly. There are a few things that I have to take into account to make this work, and a few issues that I can’t avoid:&lt;/p&gt;
+
+&lt;h4 id=&quot;player-names-arent-unique&quot;&gt;Player names aren’t unique&lt;/h4&gt;
+&lt;p&gt;One of the biggest issues with this method is that player names in Overwatch are not unique. Your account name consists of a your chosen name, e.g. &lt;strong&gt;LeeroyJenkins&lt;/strong&gt;, but Blizzard appends a number, e.g. #1234 to your account name to uniquely identify you among all the other ‘LeeroyJenkins’es. This unique number is not displayed anywhere on the UI during gameplay, so it is impossible to obtain. This will result in all players who share a name to be grouped together as the same player.&lt;/p&gt;
+
+&lt;h3 id=&quot;there-are-a-lot-of-overwatch-gifs&quot;&gt;There are a lot of Overwatch gifs&lt;/h3&gt;
+&lt;p&gt;Gfycat will have to be polled fairly consistently to keep up with all the Overwatch gifs that are uploaded. Furthermore, we need to make sure that we don’t waste resources processing GIFs that we’ve already processed. I’ll need to dig into the Gfycat API more to see how robust the search mechanism is.&lt;/p&gt;
+
+&lt;h3 id=&quot;colorblind-mode&quot;&gt;Colorblind mode&lt;/h3&gt;
+&lt;p&gt;This shouldn’t be much of an issue, but will need to be accounted for during the pre-processing phase. Webm frames will be converted to black and white before processing, but my test set should include various colorblind clips to be safe.&lt;/p&gt;
+
+&lt;h3 id=&quot;score-screen-and-tab-menu&quot;&gt;Score screen and Tab menu&lt;/h3&gt;
+&lt;p&gt;Because the replays are often from one user’s perspective, they sometimes contain the TAB menu or the after-game scoreboard. If we can detect these screens, we should be able to receive the names of everyone in the match on both teams, regardless of who dies or actually appears in the clip. This screen doesn’t appear in all clips though, so it shouldn’t be relied on.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I plan on using the next few days to research the individual parts of this project and to make sure I haven’t missed anything that might block progress. Overall, however, I believe that this should be doable in my spare time. ^^^Hopefully.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 23 Feb 2017 19:46:00 -0800</pubDate>
+        <link>http://localhost:4000/projects/overwatch/2017/02/23/overwatch-replay-scanner-part-one.html</link>
+        <guid isPermaLink="true">http://localhost:4000/projects/overwatch/2017/02/23/overwatch-replay-scanner-part-one.html</guid>
+        
+        
+        <category>projects</category>
+        
+        <category>overwatch</category>
+        
+      </item>
     
       <item>
         <title>My New Site</title>
@@ -22,8 +84,8 @@
 
 </description>
         <pubDate>Sat, 11 Feb 2017 10:55:00 -0800</pubDate>
-        <link>http://eddibbs.com/jekyll/2017/02/11/my-new-site.html</link>
-        <guid isPermaLink="true">http://eddibbs.com/jekyll/2017/02/11/my-new-site.html</guid>
+        <link>http://localhost:4000/jekyll/2017/02/11/my-new-site.html</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll/2017/02/11/my-new-site.html</guid>
         
         
         <category>jekyll</category>

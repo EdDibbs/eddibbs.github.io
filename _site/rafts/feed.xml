@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Edward Dibbs</title>
+    <description>An online portfolio for Ed Dibbs, Software Developer.
+</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 23 Feb 2017 19:11:28 -0800</pubDate>
+    <lastBuildDate>Thu, 23 Feb 2017 19:11:28 -0800</lastBuildDate>
+    <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>My New Site</title>
+        <description>&lt;p&gt;Welcome to my new site, built with &lt;a href=&quot;https://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; and hosted on &lt;a href=&quot;https://github.com/eddibbs/eddibbs.github.io/&quot;&gt;GitHub&lt;/a&gt;. I’m still learning how to properly use Jekyll (as well as github pages), so this site will likely change quite a bit over the next few days.&lt;/p&gt;
+
+&lt;p&gt;This site will mostly house my resume and some links to my projects, though it may contain various blog posts if I feel the urge to write something.&lt;/p&gt;
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;- Ed&lt;/strong&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 11 Feb 2017 10:55:00 -0800</pubDate>
+        <link>http://localhost:4000/jekyll/2017/02/11/my-new-site.html</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll/2017/02/11/my-new-site.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+      </item>
+    
+  </channel>
+</rss>
