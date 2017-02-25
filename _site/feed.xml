@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 23 Feb 2017 19:52:21 -0800</pubDate>
-    <lastBuildDate>Thu, 23 Feb 2017 19:52:21 -0800</lastBuildDate>
+    <pubDate>Sat, 25 Feb 2017 11:55:02 -0800</pubDate>
+    <lastBuildDate>Sat, 25 Feb 2017 11:55:02 -0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
@@ -58,7 +58,7 @@
 &lt;p&gt;Because the replays are often from one user’s perspective, they sometimes contain the TAB menu or the after-game scoreboard. If we can detect these screens, we should be able to receive the names of everyone in the match on both teams, regardless of who dies or actually appears in the clip. This screen doesn’t appear in all clips though, so it shouldn’t be relied on.&lt;/p&gt;
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;I plan on using the next few days to research the individual parts of this project and to make sure I haven’t missed anything that might block progress. Overall, however, I believe that this should be doable in my spare time. ^^^Hopefully.&lt;/p&gt;
+&lt;p&gt;I plan on using the next few days to research the individual parts of this project and to make sure I haven’t missed anything that might block progress. Overall, however, I believe that this should be doable in my spare time.&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 23 Feb 2017 19:46:00 -0800</pubDate>
