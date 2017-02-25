@@ -20,5 +20,38 @@ linkedin_username:  eddibbs
 google_analytics: UA-92571345-1
 
 
+# resume settings
+resume_avatar:    "false"
+resume_name:      "Edward Dibbs"
+resume_title:     "Software Developer"
+resume_contact_email: "ed@eddibbs.com"
+resume_header_contact_info: "Reno, NV | ed@eddibbs.com"
+
+# use "yes" to display the email contact button,
+# "no" to display an "I'm not looking for work" message,
+# or remove the resume_looking_for_work option entirely
+# to leave blank
+resume_looking_for_work:    "yes"
+
+# Decide which sections to use
+# comment out to Hide
+resume_section_experience: true
+resume_section_education: true
+resume_section_projects: true
+resume_section_skills: true
+#resume_section_recognition: true
+#resume_section_links: true
+#resume_section_associations: true
+
+# resume social links
+resume_social_links:
+  resume_github_url:        "https://github.com/eddibbs"
+  resume_linkedin_url:      "https://www.linkedin.com/in/eddibbs"
+  resume_website_url:       "http://www.eddibbs.com"
+resume_print_social_links:  true
+
+resume_theme: default
+
+
 # Build settings
 markdown: kramdown
