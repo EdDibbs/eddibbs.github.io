@@ -36,13 +36,11 @@ layout: default
         </div>
 
         <div class="executive-summary no-print" itemprop="description">
-          <p>Software Developer and recent grad. Currently located in Reno, NV, but actively looking for work in the San Francisco Bay Area. Especially interested in a carrer in video game development.</p>
+          <p>Software Developer currently located in Reno, NV, but actively looking for work in the San Francisco Bay Area. Especially interested in a career in video game development.</p>
         </div>
 
-        {% if site.resume_looking_for_work == 'yes' %}
+        {% if site.resumue_include_contact_button == 'yes' %}
         <a href="mailto:{{ site.resume_contact_email }}" class="contact-button no-print" itemprop="email">Contact me</a>
-        {% elsif site.resume_looking_for_work == 'no' %}
-        <a class="contact-button not-looking no-print">I'm not looking for work right now.</a>
         {% else %}
         {% endif %}
 
@@ -64,7 +62,7 @@ layout: default
           <ul class="resume-item-list">
             <li>Instrumental in the design and implementation of a flagship desktop client that interfaced with current server product via WCF.</li>
             <li>Identified the need for and led the institution of an issue tracking system (JIRA).</li>
-            <li>Designed and implemented a licensing system for an existing prduct.</li>
+            <li>Designed and implemented a licensing system for an existing product.</li>
             <li>Implemented a Java application that interfaced with an in-house API for testing and demonstrative purposes.</li>
           </ul>
 

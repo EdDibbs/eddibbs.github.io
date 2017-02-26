@@ -2,6 +2,11 @@
 {% if site.resume_print_social_links %}
 <ul>
 
+  <!-- Email link -->
+  {% if site.resume_social_links.resume_email_url %}
+  <li><strong>Email</strong>: {{ site.resume_social_links.resume_email_url }}</li>
+  {% endif %}
+
   <!-- GitHub link -->
   {% if site.resume_social_links.resume_github_url %}
   <li><strong>Github</strong>: {{ site.resume_social_links.resume_github_url }}</li>
